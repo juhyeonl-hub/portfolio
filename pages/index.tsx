@@ -112,33 +112,21 @@ const Home: React.FC = () => {
   const menuItems = [
     {
       icon: Code2,
-      title: "Continue",
+      title: "SHOWCASE",
       subtitle: "프로젝트 포트폴리오 보기",
       href: "/projects"
     },
     {
-      icon: BookOpen,
-      title: "New Game",
-      subtitle: "학습 일기 & 성장 과정",
-      href: "/blog"
-    },
-    {
-      icon: Bot,
-      title: "Load Game",
-      subtitle: "AI 엔지니어링 여정",
-      href: "/blog?category=ai"
-    },
-    {
       icon: User,
-      title: "Settings",
+      title: "PROFILE", 
       subtitle: "개발자 프로필 & 정보",
       href: "/about"
     },
     {
-      icon: FileText,
-      title: "Credits",
-      subtitle: "이력서 & 경력 사항",
-      href: "/resume"
+      icon: BookOpen,
+      title: "JOURNAL",
+      subtitle: "학습 일기 & 성장 과정", 
+      href: "/blog"
     }
   ];
 
@@ -181,8 +169,8 @@ const Home: React.FC = () => {
           <div className="absolute top-32 left-1/3 cloud-animation-reverse text-lg">☁️</div>
         </div>
 
-        {/* Social Icons - Top Right */}
-        <div className="absolute top-6 right-6 flex gap-3 z-20">
+        {/* Social Icons - Bottom Right */}
+        <div className="absolute bottom-6 right-6 flex flex-col gap-3 z-20">
           {socialLinks.map((social, index) => (
             <SocialIcon
               key={index}
@@ -201,10 +189,10 @@ const Home: React.FC = () => {
             ${showElements ? 'animate-fadeInDown' : ''}
           `}>
             <h1 className="font-pixel text-4xl md:text-6xl font-bold text-white mb-2 minecraft-text-shadow">
-              JUHYEON'S
+              JuHyeon's
             </h1>
             <h2 className="font-pixel text-2xl md:text-4xl font-bold text-gray-200 minecraft-text-shadow">
-              DEV WORLD
+              Adventure
             </h2>
             <p className="text-gray-300 mt-2 font-pixel text-sm">
               동심을 잃지 않는 개발자의 모험 🎮
@@ -234,31 +222,44 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* My Pixel Character - Right Side */}
-        <div className="absolute bottom-10 right-10 z-10">
-          <div className="minecraft-character-container">
-            {/* 메인 캐릭터 (나) */}
-            <div className="minecraft-character relative">
-              {/* 머리 */}
-              <div className="character-head bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
-              {/* 몸통 */}
-              <div className="character-body bg-gradient-to-b from-blue-500 to-blue-600 border-2 border-gray-800"></div>
-              {/* 다리 */}
-              <div className="character-legs">
-                <div className="leg bg-gradient-to-b from-gray-700 to-gray-800 border-2 border-gray-900"></div>
-                <div className="leg bg-gradient-to-b from-gray-700 to-gray-800 border-2 border-gray-900"></div>
+        {/* My Character - Left Side (Bear Hoodie) */}
+        <div className="absolute bottom-10 left-10 z-10">
+          <div className="character-container">
+            {/* 곰 후드 캐릭터 */}
+            <div className="bear-character relative">
+              {/* 후드 (곰 귀 포함) */}
+              <div className="character-hood bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800">
+                {/* 곰 귀 */}
+                <div className="bear-ear left bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+                <div className="bear-ear right bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+                {/* 곰 얼굴 */}
+                <div className="bear-face">
+                  <div className="bear-eyes">
+                    <div className="eye"></div>
+                    <div className="eye"></div>
+                  </div>
+                  <div className="bear-nose"></div>
+                  <div className="bear-mouth"></div>
+                </div>
               </div>
+              {/* 몸통 (후드티) */}
+              <div className="character-hoodie bg-gradient-to-b from-yellow-100 to-yellow-200 border-2 border-gray-800"></div>
               {/* 팔 */}
-              <div className="character-arms">
-                <div className="arm bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
-                <div className="arm bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+              <div className="character-arms-bear">
+                <div className="arm-bear bg-gradient-to-b from-yellow-100 to-yellow-200 border-2 border-gray-800"></div>
+                <div className="arm-bear bg-gradient-to-b from-yellow-100 to-yellow-200 border-2 border-gray-800"></div>
+              </div>
+              {/* 다리 */}
+              <div className="character-legs-bear">
+                <div className="leg-bear bg-gradient-to-b from-blue-600 to-blue-700 border-2 border-gray-800"></div>
+                <div className="leg-bear bg-gradient-to-b from-blue-600 to-blue-700 border-2 border-gray-800"></div>
               </div>
             </div>
             
             {/* 캐릭터 라벨 */}
-            <div className="mt-2 text-center">
-              <div className="bg-black bg-opacity-70 px-2 py-1 rounded text-white font-pixel text-xs">
-                Juhyeon Lee
+            <div className="mt-3 text-center">
+              <div className="bg-black bg-opacity-70 px-3 py-1 rounded-full text-white font-pixel text-xs">
+                JuHyeon 🐻
               </div>
             </div>
           </div>
