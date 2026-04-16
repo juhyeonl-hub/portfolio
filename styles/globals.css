@@ -471,3 +471,192 @@ li {
   transform: translate(4px, 4px);
   box-shadow: none;
 }
+
+/* RETRO RELICS Game Style */
+.game-background {
+  background: linear-gradient(
+    to bottom, 
+    #87CEEB 0%,     /* Sky blue */
+    #98D8F4 30%,    /* Light blue */
+    #90EE90 70%,    /* Light green */
+    #228B22 100%    /* Forest green */
+  );
+  position: relative;
+}
+
+.game-sky {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Cloud animations */
+.cloud-animation {
+  animation: float-cloud 8s ease-in-out infinite;
+}
+
+.cloud-animation-slow {
+  animation: float-cloud 12s ease-in-out infinite;
+}
+
+.cloud-animation-reverse {
+  animation: float-cloud-reverse 10s ease-in-out infinite;
+}
+
+@keyframes float-cloud {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  50% { transform: translateX(20px) translateY(-10px); }
+}
+
+@keyframes float-cloud-reverse {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  50% { transform: translateX(-15px) translateY(-5px); }
+}
+
+/* Retro menu styling */
+.retro-menu-panel {
+  background: linear-gradient(
+    145deg,
+    #8B4513 0%,     /* Saddle brown */
+    #A0522D 50%,    /* Sienna */
+    #8B4513 100%    /* Saddle brown */
+  );
+  border: 4px solid #654321;
+  border-radius: 12px;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  min-width: 400px;
+}
+
+.retro-menu-button {
+  background: linear-gradient(
+    145deg,
+    #DEB887 0%,     /* Burlywood */
+    #D2B48C 50%,    /* Tan */
+    #CD853F 100%    /* Peru */
+  );
+  border: 3px solid #8B7355;
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-menu-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.retro-menu-button:hover::before {
+  left: 100%;
+}
+
+.retro-button-active {
+  background: linear-gradient(
+    145deg,
+    #FFD700 0%,     /* Gold */
+    #FFA500 50%,    /* Orange */
+    #FF8C00 100%    /* Dark orange */
+  );
+  border-color: #B8860B;
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Title styling */
+.retro-title-bg {
+  background: linear-gradient(
+    145deg,
+    #4B0082 0%,     /* Indigo */
+    #6A0DAD 50%,    /* Blue violet */
+    #8A2BE2 100%    /* Blue violet */
+  );
+  border: 3px solid #301934;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.retro-text-shadow {
+  text-shadow: 
+    2px 2px 0px #000000,
+    4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Social icons */
+.social-icon-button {
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 1s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .retro-menu-panel {
+    min-width: 300px;
+    margin: 0 20px;
+  }
+  
+  .retro-title-bg {
+    margin: 0 20px;
+  }
+  
+  .retro-menu-button {
+    padding: 12px;
+  }
+}

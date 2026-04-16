@@ -8,10 +8,15 @@ import {
   Gamepad2,
   BookOpen,
   User,
-  Sparkles
+  Sparkles,
+  Github,
+  Linkedin,
+  Mail,
+  FileText,
+  Twitter
 } from 'lucide-react';
 
-const GameMenuItem = ({ 
+const GameMenuButton = ({ 
   icon: Icon, 
   title, 
   subtitle, 
@@ -28,181 +33,222 @@ const GameMenuItem = ({
 }) => (
   <Link href={href} onMouseEnter={onHover}>
     <div className={`
-      pixel-card group cursor-pointer transition-all duration-300 
-      ${isActive ? 'ring-2 ring-primary bg-primary/10' : 'hover:bg-primary/5'}
+      retro-menu-button group cursor-pointer transition-all duration-200 
+      ${isActive ? 'retro-button-active scale-105' : 'hover:scale-102'}
     `}>
-      <div className="flex items-center gap-4 p-6">
-        {isActive && (
-          <div className="text-primary font-mono text-xl animate-pulse">{">"}</div>
-        )}
+      <div className="flex items-center gap-4 p-4">
         <div className={`
-          p-3 rounded-lg transition-colors duration-300
-          ${isActive ? 'bg-primary/20' : 'bg-bg-tertiary'}
+          p-2 rounded transition-colors duration-200
+          ${isActive ? 'bg-yellow-400 text-brown-800' : 'bg-brown-200 text-brown-700'}
         `}>
-          <Icon className={`w-8 h-8 ${isActive ? 'text-primary' : 'text-accent'}`} />
+          <Icon className="w-6 h-6" />
         </div>
-        <div className="flex-1">
-          <h3 className="text-xl font-bold mb-1 font-mono tracking-wide">
+        <div className="flex-1 text-left">
+          <h3 className="font-pixel text-lg font-bold text-brown-800 mb-1">
             {title}
           </h3>
-          <p className="text-text-secondary text-sm">
+          <p className="text-brown-600 text-sm">
             {subtitle}
           </p>
         </div>
-        <div className="text-primary opacity-50 group-hover:opacity-100 transition-opacity">
-          <ArrowRight className="w-5 h-5" />
-        </div>
+        {isActive && (
+          <div className="text-brown-800 animate-bounce">
+            <ArrowRight className="w-5 h-5" />
+          </div>
+        )}
       </div>
     </div>
   </Link>
 );
 
+const SocialIcon = ({ 
+  icon: Icon, 
+  href, 
+  color, 
+  label 
+}: {
+  icon: any;
+  href: string;
+  color: string;
+  label: string;
+}) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className={`
+      social-icon-button p-3 rounded-full transition-all duration-200 hover:scale-110
+      ${color} shadow-lg hover:shadow-xl
+    `}
+    title={label}
+  >
+    <Icon className="w-5 h-5 text-white" />
+  </a>
+);
+
+const PixelCharacter = ({ 
+  emoji, 
+  animationDelay 
+}: {
+  emoji: string;
+  animationDelay: string;
+}) => (
+  <div 
+    className="text-4xl animate-bounce"
+    style={{ animationDelay, animationDuration: '2s' }}
+  >
+    {emoji}
+  </div>
+);
+
 const Home: React.FC = () => {
   const [activeMenuItem, setActiveMenuItem] = useState(0);
-  const [showPixelEffect, setShowPixelEffect] = useState(false);
+  const [showElements, setShowElements] = useState(false);
 
   useEffect(() => {
-    setShowPixelEffect(true);
+    setShowElements(true);
   }, []);
 
   const menuItems = [
     {
       icon: Code2,
-      title: "PROJECTS",
-      subtitle: "시스템 프로그래밍 & 개발 프로젝트",
+      title: "Continue",
+      subtitle: "프로젝트 포트폴리오 보기",
       href: "/projects"
     },
     {
       icon: BookOpen,
-      title: "STUDY LOG",
-      subtitle: "Hive 경험 & 기술 학습 일기",
+      title: "New Game",
+      subtitle: "학습 일기 & 성장 과정",
       href: "/blog"
     },
     {
       icon: Bot,
-      title: "AI JOURNEY",
-      subtitle: "에이전틱 엔지니어링 모험기",
+      title: "Load Game",
+      subtitle: "AI 엔지니어링 여정",
       href: "/blog?category=ai"
     },
     {
       icon: User,
-      title: "ABOUT ME",
-      subtitle: "사용자 친화적 개발자 이야기",
+      title: "Settings",
+      subtitle: "개발자 프로필 & 정보",
       href: "/about"
+    },
+    {
+      icon: FileText,
+      title: "Credits",
+      subtitle: "이력서 & 경력 사항",
+      href: "/resume"
+    }
+  ];
+
+  const socialLinks = [
+    {
+      icon: Github,
+      href: "https://github.com/juhyeonl-hub",
+      color: "bg-gray-800 hover:bg-gray-700",
+      label: "GitHub"
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/in/juhyeon-lee-54aa1a223",
+      color: "bg-blue-600 hover:bg-blue-500",
+      label: "LinkedIn"
+    },
+    {
+      icon: Mail,
+      href: "mailto:xx.juon@gmail.com",
+      color: "bg-red-500 hover:bg-red-400",
+      label: "Email"
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/yourhandle",
+      color: "bg-sky-500 hover:bg-sky-400",
+      label: "Twitter"
     }
   ];
 
   return (
     <Layout>
-      {/* Pixel Game Menu Screen */}
-      <section className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
-        {/* Pixel Background */}
-        <div className="fixed inset-0 opacity-5 pixel-bg"></div>
-        
-        <div className="container max-w-4xl mx-auto relative z-10">
-          {/* Game Title */}
-          <div className="text-center mb-16 animate-fadeInUp">
-            <div className="inline-flex items-center gap-3 mb-8">
-              <Gamepad2 className="w-8 h-8 text-primary animate-pulse" />
-              <h1 className="text-4xl md:text-6xl font-bold font-mono tracking-wider text-primary">
-                JUHYEON'S
-              </h1>
-              <Sparkles className="w-6 h-6 text-accent animate-bounce" />
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-bold font-mono mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              DEV WORLD
-            </h2>
-            
-            <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              <span className="font-mono text-accent">{'>'}</span> 동심을 잃지 않는 개발자 <br />
-              <span className="font-mono text-accent">{'>'}</span> 사용자에게 친숙한 프로그램을 만드는 것이 목표
-            </p>
-            
-            {/* Blinking cursor effect */}
-            <div className="inline-block mt-4 animate-pulse">
-              <span className="font-mono text-primary text-xl">_</span>
-            </div>
-          </div>
-
-          {/* Game Menu Items */}
-          <div className="space-y-4 mb-12">
-            {menuItems.map((item, index) => (
-              <GameMenuItem
-                key={index}
-                icon={item.icon}
-                title={item.title}
-                subtitle={item.subtitle}
-                href={item.href}
-                isActive={activeMenuItem === index}
-                onHover={() => setActiveMenuItem(index)}
-              />
-            ))}
-          </div>
-
-          {/* Game Controls Hint */}
-          <div className="text-center">
-            <div className="inline-flex items-center gap-4 px-6 py-3 bg-bg-secondary/50 rounded-lg border border-primary/20">
-              <span className="font-mono text-sm text-text-tertiary">
-                키보드 ↑↓ 또는 마우스로 선택
-              </span>
-              <span className="text-primary">|</span>
-              <span className="font-mono text-sm text-text-tertiary">
-                Enter 또는 클릭으로 진입
-              </span>
-            </div>
-          </div>
+      {/* Retro Game Main Menu */}
+      <section className="min-h-screen relative overflow-hidden game-background">
+        {/* Animated Sky Background */}
+        <div className="absolute inset-0 game-sky">
+          {/* Floating clouds */}
+          <div className="absolute top-10 left-10 cloud-animation">☁️</div>
+          <div className="absolute top-20 right-20 cloud-animation-slow">☁️</div>
+          <div className="absolute top-32 left-1/3 cloud-animation-reverse">☁️</div>
         </div>
 
-        {/* Floating Pixels Animation */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className={`
-                absolute w-2 h-2 bg-primary/30 floating-pixel
-                ${showPixelEffect ? 'animate-float' : ''}
-              `}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
+        {/* Social Icons - Top Right */}
+        <div className="absolute top-6 right-6 flex gap-3 z-20">
+          {socialLinks.map((social, index) => (
+            <SocialIcon
+              key={index}
+              icon={social.icon}
+              href={social.href}
+              color={social.color}
+              label={social.label}
             />
           ))}
         </div>
-      </section>
 
-      {/* Quick Stats */}
-      <section className="py-16 bg-bg-secondary/50">
-        <div className="container">
-          <div className="grid grid-3 gap-8">
-            <div className="text-center pixel-card p-8">
-              <div className="font-mono text-3xl font-bold text-primary mb-2">
-                2+
-              </div>
-              <p className="text-text-secondary">
-                Years Professional<br />Experience
-              </p>
+        {/* Main Game Title */}
+        <div className="absolute top-12 left-1/2 transform -translate-x-1/2 text-center z-10">
+          <div className={`
+            retro-title-bg p-6 rounded-lg shadow-2xl
+            ${showElements ? 'animate-fadeInDown' : ''}
+          `}>
+            <h1 className="font-pixel text-4xl md:text-6xl font-bold text-yellow-400 mb-2 retro-text-shadow">
+              JUHYEON'S
+            </h1>
+            <h2 className="font-pixel text-2xl md:text-4xl font-bold text-white retro-text-shadow">
+              DEV WORLD
+            </h2>
+            <p className="text-yellow-200 mt-2 font-pixel text-sm">
+              동심을 잃지 않는 개발자의 모험
+            </p>
+          </div>
+        </div>
+
+        {/* Central Menu Panel */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className={`
+            retro-menu-panel p-8 rounded-lg shadow-2xl
+            ${showElements ? 'animate-fadeInUp' : ''}
+          `}>
+            <div className="space-y-3">
+              {menuItems.map((item, index) => (
+                <GameMenuButton
+                  key={index}
+                  icon={item.icon}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  href={item.href}
+                  isActive={activeMenuItem === index}
+                  onHover={() => setActiveMenuItem(index)}
+                />
+              ))}
             </div>
-            
-            <div className="text-center pixel-card p-8">
-              <div className="font-mono text-3xl font-bold text-accent mb-2">
-                10+
-              </div>
-              <p className="text-text-secondary">
-                Systems Programming<br />Projects
-              </p>
+          </div>
+        </div>
+
+        {/* Pixel Characters - Right Side */}
+        <div className="absolute bottom-10 right-10 flex gap-4 z-10">
+          <PixelCharacter emoji="👨‍💻" animationDelay="0s" />
+          <PixelCharacter emoji="🤖" animationDelay="0.5s" />
+          <PixelCharacter emoji="✨" animationDelay="1s" />
+        </div>
+
+        {/* Bottom Status Bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3 z-10">
+          <div className="container mx-auto flex justify-between items-center">
+            <div className="font-pixel text-sm">
+              Level: Systems Programmer → AI Engineer
             </div>
-            
-            <div className="text-center pixel-card p-8">
-              <div className="font-mono text-3xl font-bold text-warning mb-2">
-                ∞
-              </div>
-              <p className="text-text-secondary">
-                동심과 호기심으로<br />배우는 중
-              </p>
+            <div className="font-pixel text-sm">
+              Experience: 2+ Years | Projects: 10+ | 동심: ∞
             </div>
           </div>
         </div>
@@ -210,5 +256,7 @@ const Home: React.FC = () => {
     </Layout>
   );
 };
+
+export default Home;
 
 export default Home;
