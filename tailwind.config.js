@@ -19,10 +19,21 @@ module.exports = {
         'secondary': 'var(--secondary)',
         'accent': 'var(--accent)',
         'warning': 'var(--warning)',
+        // RETRO RELICS colors
+        'brown': {
+          200: '#D2B48C',
+          600: '#8B7355',
+          700: '#654321',
+          800: '#5D4E37'
+        },
+        'yellow': {
+          400: '#FFD700'
+        }
       },
       fontFamily: {
         'mono': 'var(--font-mono)',
         'serif': 'var(--font-serif)',
+        'pixel': 'var(--font-pixel)',
       },
       spacing: {
         'xs': 'var(--space-xs)',
@@ -47,6 +58,9 @@ module.exports = {
         'fast': 'var(--transition-fast)',
         'normal': 'var(--transition-normal)',
         'slow': 'var(--transition-slow)',
+      },
+      scale: {
+        '102': '1.02',
       }
     },
   },
