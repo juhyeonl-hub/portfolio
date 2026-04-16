@@ -208,3 +208,4 @@ While this is a personal portfolio, suggestions and improvements are welcome! Fe
 ---
 
 Built with ❤️ by Juhyeon Lee | Systems Programmer → AI Agent Engineer
+# Force redeploy Thu Apr 16 21:49:20 UTC 2026
