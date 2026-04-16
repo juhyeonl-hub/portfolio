@@ -207,7 +207,7 @@ const Home: React.FC = () => {
               DEV WORLD
             </h2>
             <p className="text-yellow-200 mt-2 font-pixel text-sm">
-              동심을 잃지 않는 개발자의 모험
+              동심을 잃지 않는 개발자의 모험 🎮
             </p>
           </div>
         </div>
