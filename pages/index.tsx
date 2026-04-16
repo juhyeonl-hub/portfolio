@@ -34,7 +34,7 @@ const GameMenuButton = ({
   <Link href={href} onMouseEnter={onHover}>
     <div className={`
       retro-menu-button group cursor-pointer transition-all duration-200 
-      ${isActive ? 'retro-button-active scale-105' : 'hover:scale-102'}
+      ${isActive ? 'retro-button-active scale-105' : 'hover:scale-105'}
     `}>
       <div className="flex items-center gap-4 p-4">
         <div className={`

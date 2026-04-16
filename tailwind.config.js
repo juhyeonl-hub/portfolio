@@ -58,9 +58,6 @@ module.exports = {
         'fast': 'var(--transition-fast)',
         'normal': 'var(--transition-normal)',
         'slow': 'var(--transition-slow)',
-      },
-      scale: {
-        '102': '1.02',
       }
     },
   },
