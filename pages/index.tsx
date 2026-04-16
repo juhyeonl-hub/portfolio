@@ -36,24 +36,24 @@ const GameMenuButton = ({
       retro-menu-button group cursor-pointer transition-all duration-200 
       ${isActive ? 'retro-button-active scale-105' : 'hover:scale-105'}
     `}>
-      <div className="flex items-center gap-4 p-4">
+      <div className="flex items-center gap-3 p-3">
         <div className={`
           p-2 rounded transition-colors duration-200
           ${isActive ? 'bg-yellow-400 text-brown-800' : 'bg-brown-200 text-brown-700'}
         `}>
-          <Icon className="w-6 h-6" />
+          <Icon className="w-5 h-5" />
         </div>
         <div className="flex-1 text-left">
-          <h3 className="font-pixel text-lg font-bold text-brown-800 mb-1">
+          <h3 className="font-pixel text-base font-bold text-brown-800 mb-1">
             {title}
           </h3>
-          <p className="text-brown-600 text-sm">
+          <p className="text-brown-600 text-xs">
             {subtitle}
           </p>
         </div>
         {isActive && (
           <div className="text-brown-800 animate-bounce">
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </div>
         )}
       </div>
@@ -215,10 +215,10 @@ const Home: React.FC = () => {
         {/* Central Menu Panel */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
           <div className={`
-            retro-menu-panel p-8 rounded-lg shadow-2xl
+            retro-menu-panel p-6 rounded-lg shadow-2xl max-w-md w-full mx-auto
             ${showElements ? 'animate-fadeInUp' : ''}
           `}>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {menuItems.map((item, index) => (
                 <GameMenuButton
                   key={index}
