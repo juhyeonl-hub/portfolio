@@ -33,26 +33,26 @@ const GameMenuButton = ({
 }) => (
   <Link href={href} onMouseEnter={onHover}>
     <div className={`
-      retro-menu-button group cursor-pointer transition-all duration-200 
-      ${isActive ? 'retro-button-active scale-105' : 'hover:scale-105'}
+      minecraft-menu-button group cursor-pointer transition-all duration-200 
+      ${isActive ? 'minecraft-button-active scale-105' : 'hover:scale-105'}
     `}>
       <div className="flex items-center gap-3 p-3">
         <div className={`
           p-2 rounded transition-colors duration-200
-          ${isActive ? 'bg-yellow-400 text-brown-800' : 'bg-brown-200 text-brown-700'}
+          ${isActive ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'}
         `}>
           <Icon className="w-5 h-5" />
         </div>
         <div className="flex-1 text-left">
-          <h3 className="font-pixel text-base font-bold text-brown-800 mb-1">
+          <h3 className="font-pixel text-base font-bold text-gray-800 mb-1">
             {title}
           </h3>
-          <p className="text-brown-600 text-xs">
+          <p className="text-gray-600 text-xs">
             {subtitle}
           </p>
         </div>
         {isActive && (
-          <div className="text-brown-800 animate-bounce">
+          <div className="text-gray-800 animate-bounce">
             <ArrowRight className="w-4 h-4" />
           </div>
         )}
@@ -171,14 +171,14 @@ const Home: React.FC = () => {
 
   return (
     <Layout>
-      {/* Retro Game Main Menu */}
-      <section className="min-h-screen relative overflow-hidden game-background">
-        {/* Animated Sky Background */}
-        <div className="absolute inset-0 game-sky">
+      {/* Minecraft Style Main Menu */}
+      <section className="min-h-screen relative overflow-hidden minecraft-background">
+        {/* Minecraft Sky Background */}
+        <div className="absolute inset-0 minecraft-sky">
           {/* Floating clouds */}
-          <div className="absolute top-10 left-10 cloud-animation">☁️</div>
-          <div className="absolute top-20 right-20 cloud-animation-slow">☁️</div>
-          <div className="absolute top-32 left-1/3 cloud-animation-reverse">☁️</div>
+          <div className="absolute top-10 left-10 cloud-animation text-2xl">☁️</div>
+          <div className="absolute top-20 right-20 cloud-animation-slow text-xl">☁️</div>
+          <div className="absolute top-32 left-1/3 cloud-animation-reverse text-lg">☁️</div>
         </div>
 
         {/* Social Icons - Top Right */}
@@ -197,16 +197,16 @@ const Home: React.FC = () => {
         {/* Main Game Title */}
         <div className="absolute top-12 left-1/2 transform -translate-x-1/2 text-center z-10">
           <div className={`
-            retro-title-bg p-6 rounded-lg shadow-2xl
+            minecraft-title-bg p-6 rounded-lg shadow-2xl
             ${showElements ? 'animate-fadeInDown' : ''}
           `}>
-            <h1 className="font-pixel text-4xl md:text-6xl font-bold text-yellow-400 mb-2 retro-text-shadow">
+            <h1 className="font-pixel text-4xl md:text-6xl font-bold text-white mb-2 minecraft-text-shadow">
               JUHYEON'S
             </h1>
-            <h2 className="font-pixel text-2xl md:text-4xl font-bold text-white retro-text-shadow">
+            <h2 className="font-pixel text-2xl md:text-4xl font-bold text-gray-200 minecraft-text-shadow">
               DEV WORLD
             </h2>
-            <p className="text-yellow-200 mt-2 font-pixel text-sm">
+            <p className="text-gray-300 mt-2 font-pixel text-sm">
               동심을 잃지 않는 개발자의 모험 🎮
             </p>
           </div>
@@ -215,7 +215,7 @@ const Home: React.FC = () => {
         {/* Central Menu Panel */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
           <div className={`
-            retro-menu-panel p-6 rounded-lg shadow-2xl max-w-md w-full mx-auto
+            minecraft-menu-panel p-6 rounded-lg shadow-2xl max-w-md w-full mx-auto
             ${showElements ? 'animate-fadeInUp' : ''}
           `}>
             <div className="space-y-4">
@@ -234,11 +234,34 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Pixel Characters - Right Side */}
-        <div className="absolute bottom-10 right-10 flex gap-4 z-10">
-          <PixelCharacter emoji="👨‍💻" animationDelay="0s" />
-          <PixelCharacter emoji="🤖" animationDelay="0.5s" />
-          <PixelCharacter emoji="✨" animationDelay="1s" />
+        {/* My Pixel Character - Right Side */}
+        <div className="absolute bottom-10 right-10 z-10">
+          <div className="minecraft-character-container">
+            {/* 메인 캐릭터 (나) */}
+            <div className="minecraft-character relative">
+              {/* 머리 */}
+              <div className="character-head bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+              {/* 몸통 */}
+              <div className="character-body bg-gradient-to-b from-blue-500 to-blue-600 border-2 border-gray-800"></div>
+              {/* 다리 */}
+              <div className="character-legs">
+                <div className="leg bg-gradient-to-b from-gray-700 to-gray-800 border-2 border-gray-900"></div>
+                <div className="leg bg-gradient-to-b from-gray-700 to-gray-800 border-2 border-gray-900"></div>
+              </div>
+              {/* 팔 */}
+              <div className="character-arms">
+                <div className="arm bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+                <div className="arm bg-gradient-to-b from-yellow-200 to-yellow-300 border-2 border-gray-800"></div>
+              </div>
+            </div>
+            
+            {/* 캐릭터 라벨 */}
+            <div className="mt-2 text-center">
+              <div className="bg-black bg-opacity-70 px-2 py-1 rounded text-white font-pixel text-xs">
+                Juhyeon Lee
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Status Bar */}
