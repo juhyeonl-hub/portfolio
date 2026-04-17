@@ -1,317 +1,215 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import Link from 'next/link';
-import { 
-  Calendar, 
-  Clock, 
-  ArrowRight, 
-  Bot, 
-  Brain, 
-  Zap,
-  Code2,
-  BookOpen,
-  TrendingUp
-} from 'lucide-react';
+import { Calendar, Clock, BookOpen, Code2, Brain, Zap, Tag, ArrowRight } from 'lucide-react';
 
-interface BlogPost {
+interface JournalEntry {
   id: string;
   title: string;
-  excerpt: string;
+  subtitle: string;
   date: string;
   readTime: string;
-  category: 'agentic-engineering' | 'systems-programming' | 'learning-journey' | 'project-deep-dive';
+  excerpt: string;
   tags: string[];
-  featured?: boolean;
+  category: 'learning' | 'project' | 'reflection' | 'technical';
+  icon: any;
 }
 
-// Sample blog posts - these would come from your CMS/markdown files in a real setup
-const blogPosts: BlogPost[] = [
-  {
-    id: 'systems-to-ai-transition',
-    title: 'From Systems Programming to AI Agents: My Learning Path',
-    excerpt: 'Why I\'m transitioning from low-level C/C++ development to building intelligent automation systems, and how my systems background gives me a unique perspective on AI agent architecture.',
-    date: '2026-04-16',
-    readTime: '8 min read',
-    category: 'learning-journey',
-    tags: ['Career Transition', 'AI Agents', 'Systems Programming'],
-    featured: true
-  },
-  {
-    id: 'minishell-concurrency-lessons',
-    title: 'Building a POSIX Shell: Lessons in Process Management',
-    excerpt: 'Deep dive into the Minishell project: handling complex pipe chains, signal processing, and the challenges of building reliable process lifecycle management in C.',
-    date: '2026-04-10',
-    readTime: '12 min read',
-    category: 'project-deep-dive',
-    tags: ['C Programming', 'POSIX', 'Process Management', 'Minishell']
-  },
-  {
-    id: 'first-ai-agent-experiment',
-    title: 'My First AI Agent: Code Review Automation',
-    excerpt: 'Building my first practical AI agent using Claude API to automate code reviews. What worked, what didn\'t, and lessons learned about prompt engineering and context management.',
-    date: '2026-04-05',
-    readTime: '10 min read',
-    category: 'agentic-engineering',
-    tags: ['AI Agents', 'Claude API', 'Automation', 'Code Review']
-  },
-  {
-    id: 'philosophers-deadlock-deep-dive',
-    title: 'Solving Deadlocks: The Philosophers Problem in Practice',
-    excerpt: 'A technical breakdown of implementing the Dining Philosophers problem with zero data races. Synchronization strategies, timing precision, and debugging concurrent code.',
-    date: '2026-03-28',
-    readTime: '15 min read',
-    category: 'project-deep-dive',
-    tags: ['Concurrency', 'POSIX Threads', 'Deadlock Prevention', 'C Programming']
-  },
-  {
-    id: 'hive-helsinki-experience',
-    title: 'Hive Helsinki: Peer-to-Peer Learning in Practice',
-    excerpt: 'What it\'s really like to study at Hive Helsinki (42 Network). The peer-to-peer learning model, project-based curriculum, and how it\'s reshaping my approach to problem-solving.',
-    date: '2026-03-20',
-    readTime: '6 min read',
-    category: 'learning-journey',
-    tags: ['Hive Helsinki', '42 Network', 'Education', 'Peer Learning']
-  }
-];
-
-const Blog: React.FC = () => {
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'agentic-engineering': return <Bot className="w-4 h-4" />;
-      case 'systems-programming': return <Code2 className="w-4 h-4" />;
-      case 'learning-journey': return <BookOpen className="w-4 h-4" />;
-      case 'project-deep-dive': return <Zap className="w-4 h-4" />;
-      default: return <BookOpen className="w-4 h-4" />;
-    }
-  };
-
+const JournalCard = ({ entry }: { entry: JournalEntry }) => {
+  const Icon = entry.icon;
   const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'agentic-engineering': return 'text-primary border-primary/20 bg-primary/10';
-      case 'systems-programming': return 'text-accent border-accent/20 bg-accent/10';
-      case 'learning-journey': return 'text-warning border-warning/20 bg-warning/10';
-      case 'project-deep-dive': return 'text-secondary border-secondary/20 bg-secondary/10';
-      default: return 'text-primary border-primary/20 bg-primary/10';
-    }
+    const colors = {
+      learning: 'text-green-600 bg-green-100',
+      project: 'text-blue-600 bg-blue-100',
+      reflection: 'text-purple-600 bg-purple-100',
+      technical: 'text-orange-600 bg-orange-100'
+    };
+    return colors[category as keyof typeof colors] || 'text-gray-600 bg-gray-100';
   };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  const featuredPost = blogPosts.find(post => post.featured);
-  const regularPosts = blogPosts.filter(post => !post.featured);
 
   return (
-    <Layout 
-      title="Blog - Juhyeon Lee" 
-      description="Insights on agentic engineering, systems programming, and the journey from low-level C/C++ to AI agent development."
-    >
-      <div className="py-16">
-        <div className="container">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold mb-6">
-              <Brain className="inline w-10 h-10 mr-3 text-primary" />
-              My Learning Journey
-            </h1>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              Documenting my transition from systems programming to agentic engineering. 
-              Deep dives into projects, technical challenges, and insights from building AI agents.
-            </p>
-          </div>
-
-          {/* Featured Post */}
-          {featuredPost && (
-            <div className="mb-16">
-              <div className="flex items-center gap-2 mb-6">
-                <TrendingUp className="w-5 h-5 text-primary" />
-                <span className="text-primary font-semibold">Featured Post</span>
-              </div>
-              
-              <div className="card bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 hover:scale-105 transition-all duration-300">
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="md:col-span-2">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`px-3 py-1 rounded-full border text-sm font-medium flex items-center gap-2 ${getCategoryColor(featuredPost.category)}`}>
-                        {getCategoryIcon(featuredPost.category)}
-                        <span className="capitalize">
-                          {featuredPost.category.replace('-', ' ')}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h2 className="text-2xl font-bold mb-4 text-primary">
-                      {featuredPost.title}
-                    </h2>
-
-                    <p className="text-text-secondary mb-6 leading-relaxed">
-                      {featuredPost.excerpt}
-                    </p>
-
-                    <div className="flex items-center gap-4 text-text-tertiary text-sm mb-6">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{formatDate(featuredPost.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        <span>{featuredPost.readTime}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {featuredPost.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-bg-tertiary rounded text-sm text-text-secondary"
-                        >
-                          #{tag.toLowerCase().replace(' ', '-')}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Link 
-                      href={`/blog/${featuredPost.id}`}
-                      className="btn inline-flex items-center gap-2"
-                    >
-                      Read Full Post
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-
-                  <div className="flex items-center justify-center">
-                    <div className="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center">
-                      <Bot className="w-16 h-16 text-primary" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div className="journal-card group cursor-pointer transition-all duration-300 hover:scale-105">
+      <div className="p-6">
+        {/* 헤더 */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="journal-icon bg-blue-500 text-white p-2 rounded-lg">
+              <Icon className="w-5 h-5" />
             </div>
-          )}
-
-          {/* Blog Posts Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {regularPosts.map((post, index) => (
-              <article
-                key={post.id}
-                className="card hover:scale-105 transition-all duration-300 animate-fadeInUp"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`px-3 py-1 rounded-full border text-sm font-medium flex items-center gap-2 ${getCategoryColor(post.category)}`}>
-                    {getCategoryIcon(post.category)}
-                    <span className="capitalize">
-                      {post.category.replace('-', ' ')}
-                    </span>
-                  </div>
-                </div>
-
-                <h2 className="text-xl font-bold mb-3 hover:text-primary transition-colors">
-                  <Link href={`/blog/${post.id}`}>
-                    {post.title}
-                  </Link>
-                </h2>
-
-                <p className="text-text-secondary mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                <div className="flex items-center gap-4 text-text-tertiary text-sm mb-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{formatDate(post.date)}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{post.readTime}</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-bg-tertiary rounded text-sm text-text-secondary"
-                    >
-                      #{tag.toLowerCase().replace(' ', '-')}
-                    </span>
-                  ))}
-                </div>
-
-                <Link 
-                  href={`/blog/${post.id}`}
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors"
-                >
-                  Read More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </article>
-            ))}
+            <span className={`px-2 py-1 rounded-full text-xs font-pixel ${getCategoryColor(entry.category)}`}>
+              {entry.category}
+            </span>
           </div>
-
-          {/* Coming Soon Notice */}
-          <div className="mt-16 text-center">
-            <div className="card bg-gradient-to-r from-accent/10 to-secondary/10 border border-accent/20">
-              <Zap className="w-12 h-12 text-accent mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-4">More Content Coming Weekly!</h3>
-              <p className="text-text-secondary mb-6">
-                I'm committed to sharing my learning journey with regular posts about AI agent development, 
-                systems programming insights, and project breakdowns. New content every week!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="mailto:xx.juon@gmail.com" 
-                  className="btn-secondary"
-                >
-                  Subscribe via Email
-                </a>
-                <a
-                  href="https://github.com/juhyeonl-hub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                >
-                  Follow on GitHub
-                </a>
-              </div>
-            </div>
+          <div className="flex items-center gap-2 text-gray-500 text-xs">
+            <Calendar className="w-3 h-3" />
+            <span>{entry.date}</span>
           </div>
+        </div>
 
-          {/* Categories */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">Explore by Category</h3>
-            <div className="grid grid-2 md:grid-cols-4 gap-4">
-              <div className="card text-center border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors">
-                <Bot className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-primary">Agentic Engineering</h4>
-                <p className="text-text-secondary text-sm">AI agents & automation</p>
-              </div>
-              <div className="card text-center border-accent/20 bg-accent/5 hover:bg-accent/10 transition-colors">
-                <Code2 className="w-8 h-8 text-accent mx-auto mb-3" />
-                <h4 className="font-semibold text-accent">Systems Programming</h4>
-                <p className="text-text-secondary text-sm">C/C++ & low-level topics</p>
-              </div>
-              <div className="card text-center border-warning/20 bg-warning/5 hover:bg-warning/10 transition-colors">
-                <BookOpen className="w-8 h-8 text-warning mx-auto mb-3" />
-                <h4 className="font-semibold text-warning">Learning Journey</h4>
-                <p className="text-text-secondary text-sm">Education & career insights</p>
-              </div>
-              <div className="card text-center border-secondary/20 bg-secondary/5 hover:bg-secondary/10 transition-colors">
-                <Zap className="w-8 h-8 text-secondary mx-auto mb-3" />
-                <h4 className="font-semibold text-secondary">Project Deep Dives</h4>
-                <p className="text-text-secondary text-sm">Technical breakdowns</p>
-              </div>
-            </div>
+        {/* 제목과 부제목 */}
+        <h3 className="font-pixel text-lg font-bold text-gray-800 mb-2 line-clamp-2">
+          {entry.title}
+        </h3>
+        <p className="text-blue-600 text-sm font-pixel mb-3">
+          {entry.subtitle}
+        </p>
+
+        {/* 내용 미리보기 */}
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+          {entry.excerpt}
+        </p>
+
+        {/* 태그 */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {entry.tags.slice(0, 3).map((tag, index) => (
+            <span 
+              key={index}
+              className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-pixel"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        {/* 하단 */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-gray-500 text-xs">
+            <Clock className="w-3 h-3" />
+            <span>{entry.readTime}</span>
+          </div>
+          <div className="text-blue-600 text-sm font-pixel flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            Read More
+            <ArrowRight className="w-3 h-3" />
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const JournalPage: React.FC = () => {
+  const journalEntries: JournalEntry[] = [
+    {
+      id: 'hive-first-month',
+      title: 'Hive 첫 달 회고',
+      subtitle: 'Peer Learning의 놀라운 경험',
+      date: '2024.12.15',
+      readTime: '5분',
+      excerpt: 'Hive Helsinki에서의 첫 한 달. 동료와 함께 학습하며 느낀 것들과 C 프로그래밍의 깊이를 탐구하며 얻은 인사이트들을 정리해보았습니다.',
+      tags: ['hive', '회고', 'peer-learning', 'C'],
+      category: 'reflection',
+      icon: BookOpen
+    },
+    {
+      id: 'minishell-debugging',
+      title: 'Minishell 디버깅 일지',
+      subtitle: 'Signal Handling의 복잡함',
+      date: '2024.11.28',
+      readTime: '8분',
+      excerpt: 'SIGINT와 SIGQUIT 처리에서 만난 복잡한 버그들과 해결 과정. fork/exec 시스템 콜에서 발생하는 race condition을 어떻게 해결했는지 기록합니다.',
+      tags: ['minishell', 'signal', 'debugging', 'unix'],
+      category: 'technical',
+      icon: Code2
+    },
+    {
+      id: 'philosophers-deadlock',
+      title: 'Philosophers와 데드락',
+      subtitle: '동시성 프로그래밍의 핵심',
+      date: '2024.10.12',
+      readTime: '6분',
+      excerpt: 'Dining Philosophers 문제를 해결하며 배운 동시성과 동기화. 데드락을 방지하는 여러 전략들과 pthread 뮤텍스의 활용법을 탐구했습니다.',
+      tags: ['philosophers', 'concurrency', 'mutex', 'deadlock'],
+      category: 'project',
+      icon: Zap
+    },
+    {
+      id: 'c-to-cpp-journey',
+      title: 'C에서 C++로의 여정',
+      subtitle: '객체지향의 세계',
+      date: '2024.09.20',
+      readTime: '7분',
+      excerpt: 'C 프로그래밍에 익숙해진 후 C++을 배우며 느낀 패러다임의 변화. 메모리 관리, 상속, 다형성 등 OOP 개념들의 실제 적용 경험을 공유합니다.',
+      tags: ['cpp', 'oop', 'inheritance', 'polymorphism'],
+      category: 'learning',
+      icon: Brain
+    },
+    {
+      id: 'push-swap-optimization',
+      title: 'Push Swap 최적화기',
+      subtitle: '알고리즘 효율성 추구',
+      date: '2024.08.15',
+      readTime: '9분',
+      excerpt: 'Stack 정렬 알고리즘을 최적화하는 과정. Quicksort에서 Chunk 기반 전략으로 전환하며 배운 알고리즘 설계의 중요성과 복잡도 분석 방법론.',
+      tags: ['push-swap', 'algorithm', 'optimization', 'complexity'],
+      category: 'project',
+      icon: Code2
+    },
+    {
+      id: 'ai-agent-transition',
+      title: 'AI Agent 개발로의 전환',
+      subtitle: 'Systems에서 Intelligence로',
+      date: '2026.01.03',
+      readTime: '4분',
+      excerpt: 'Systems Programming 기반으로 AI Agent 개발 분야에 진입하며 느낀 것들. 기존 지식이 어떻게 새로운 분야와 연결되는지에 대한 초기 관찰들.',
+      tags: ['ai-agent', 'transition', 'career', 'reflection'],
+      category: 'reflection',
+      icon: Brain
+    }
+  ];
+
+  return (
+    <Layout>
+      <section className="min-h-screen py-20 journal-background">
+        <div className="container max-w-7xl mx-auto px-6">
+          {/* 헤더 */}
+          <div className="text-center mb-16">
+            <h1 className="font-pixel text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              JOURNAL
+            </h1>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              학습 여정의 기록과 프로젝트 회고,<br />
+              그리고 개발자로서의 성장 이야기
+            </p>
+          </div>
+
+          {/* 카테고리 필터 */}
+          <div className="flex flex-wrap gap-3 justify-center mb-12">
+            <button className="category-filter active">All</button>
+            <button className="category-filter">Learning</button>
+            <button className="category-filter">Projects</button>
+            <button className="category-filter">Reflections</button>
+            <button className="category-filter">Technical</button>
+          </div>
+
+          {/* 저널 엔트리 그리드 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {journalEntries.map((entry) => (
+              <JournalCard key={entry.id} entry={entry} />
+            ))}
+          </div>
+
+          {/* Coming Soon */}
+          <div className="text-center mt-16">
+            <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-8 max-w-2xl mx-auto">
+              <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="font-pixel text-xl font-bold text-gray-800 mb-3">
+                더 많은 이야기가 준비 중입니다
+              </h3>
+              <p className="text-gray-600 mb-6">
+                AI Agent 개발 여정의 새로운 챕터들과<br />
+                더 깊이 있는 기술적 탐구들을 기록해나갈 예정입니다.
+              </p>
+              <Link href="/">
+                <button className="minecraft-menu-button px-8 py-4 font-pixel text-gray-800 hover:scale-105 transition-transform">
+                  ← Back to Adventure
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
 
-export default Blog;
+export default JournalPage;

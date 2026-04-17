@@ -1,337 +1,216 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import { 
-  MapPin, 
-  Calendar, 
-  Code2, 
-  Brain, 
-  Globe,
-  GraduationCap,
-  Briefcase,
-  Target,
-  Heart,
-  Coffee,
-  BookOpen,
-  Zap
-} from 'lucide-react';
+import Link from 'next/link';
+import { MapPin, Calendar, Mail, Github, Linkedin, Globe, Code2, GraduationCap, Briefcase, Award } from 'lucide-react';
 
-const About: React.FC = () => {
+const AboutPage: React.FC = () => {
   return (
-    <Layout 
-      title="About - Juhyeon Lee" 
-      description="Learn more about Juhyeon Lee's journey from systems programming to AI agent development, professional experience, and personal interests."
-    >
-      <div className="py-16">
-        <div className="container max-w-4xl">
-          {/* Header */}
+    <Layout>
+      <section className="min-h-screen py-20 profile-background">
+        <div className="container max-w-6xl mx-auto px-6">
+          {/* 헤더 */}
           <div className="text-center mb-16">
-            <div className="w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-8 flex items-center justify-center">
-              <Code2 className="w-16 h-16 text-bg-primary" />
-            </div>
-            <h1 className="text-4xl font-bold mb-6">
-              About Me
+            <h1 className="font-pixel text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              PROFILE
             </h1>
-            <p className="text-xl text-text-secondary">
-              Systems programmer evolving into an AI agent engineer
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Systems Programming에서 시작하여<br />
+              Agentic Engineering으로 나아가는 개발자
             </p>
           </div>
 
-          {/* Personal Story */}
-          <section className="mb-16">
-            <div className="card">
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <Heart className="w-6 h-6 text-primary" />
-                My Story
-              </h2>
-              <div className="space-y-4 text-text-secondary leading-relaxed">
-                <p>
-                  "When faced with something unfamiliar, I dig in and figure it out myself." 
-                  This philosophy has shaped my entire career journey, from my early days in Korea's 
-                  financial sector to my current studies at Hive Helsinki.
-                </p>
-                <p>
-                  I started my professional journey as a Java backend developer, working across multiple 
-                  companies in Korea's financial and government sectors. Each role presented unique challenges 
-                  that required me to learn new technologies quickly and adapt to complex existing systems 
-                  with minimal documentation.
-                </p>
-                <p>
-                  The transition from traditional enterprise development to low-level systems programming 
-                  at Hive Helsinki has been transformative. Working with C and C++, diving deep into 
-                  process management, concurrency, and memory management has given me a fundamental 
-                  understanding of how software really works under the hood.
-                </p>
-                <p>
-                  Now, I'm channeling this systems-level expertise toward AI agent development. 
-                  The combination of low-level programming knowledge and high-level AI capabilities 
-                  creates unique opportunities for building more efficient, reliable, and sophisticated 
-                  automation solutions.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Current Focus */}
-          <section className="mb-16">
-            <div className="card bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <Target className="w-6 h-6 text-primary" />
-                Current Focus
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-lg font-semibold mb-3 text-accent">
-                    <GraduationCap className="inline w-5 h-5 mr-2" />
-                    Hive Helsinki Studies
-                  </h3>
-                  <p className="text-text-secondary">
-                    Deepening my computer science fundamentals through intensive peer-to-peer learning. 
-                    Currently working on advanced C++ modules and preparing for system-level projects.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-3 text-secondary">
-                    <Brain className="inline w-5 h-5 mr-2" />
-                    AI Agent Development
-                  </h3>
-                  <p className="text-text-secondary">
-                    Building practical automation solutions using LLMs and exploring the intersection 
-                    of systems programming and artificial intelligence.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Professional Timeline */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Briefcase className="w-6 h-6 text-primary" />
-              Professional Journey
-            </h2>
-            
-            <div className="space-y-6">
-              {/* Hive Helsinki */}
-              <div className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                    <GraduationCap className="w-6 h-6 text-bg-primary" />
-                  </div>
-                  <div className="w-px h-16 bg-primary/30 mt-2"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-lg font-semibold text-primary">Hive Helsinki (42 Network)</h3>
-                    <span className="px-2 py-1 bg-primary/20 text-primary rounded text-sm">Current</span>
-                  </div>
-                  <p className="text-text-tertiary mb-2">Nov 2024 - July 2026 (Expected)</p>
-                  <p className="text-text-secondary">
-                    Intensive systems programming curriculum. Mastering C/C++, algorithms, 
-                    data structures, and collaborative software development through peer learning.
-                  </p>
-                </div>
-              </div>
-
-              {/* Professional Experience */}
-              <div className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                    <Code2 className="w-6 h-6 text-bg-primary" />
-                  </div>
-                  <div className="w-px h-16 bg-accent/30 mt-2"></div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-accent">Backend Developer</h3>
-                  <p className="text-text-tertiary mb-2">Feb 2021 - May 2023 | Korea</p>
-                  <p className="text-text-secondary">
-                    Full-stack development across Hyundai Capital, Korean National Police Agency, 
-                    and DB Insurance. Built enterprise systems with Java/Spring Boot, 
-                    handled complex integrations, and delivered under tight deadlines.
-                  </p>
-                </div>
-              </div>
-
-              {/* Education Background */}
-              <div className="flex gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
-                    <BookOpen className="w-6 h-6 text-bg-primary" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-secondary">Gangdong University</h3>
-                  <p className="text-text-tertiary mb-2">Mar 2015 - Feb 2017 | Korea</p>
-                  <p className="text-text-secondary">
-                    Associate Degree in Leisure Sports. This diverse educational background 
-                    taught me discipline, teamwork, and adaptability—skills that transfer 
-                    well to collaborative software development.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Technical Skills */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Zap className="w-6 h-6 text-primary" />
-              Technical Expertise
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="card">
-                <h3 className="font-semibold mb-4 text-primary">Systems Programming</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">C/C++</span>
-                    <span className="text-primary">Advanced</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">POSIX/UNIX</span>
-                    <span className="text-primary">Proficient</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Memory Management</span>
-                    <span className="text-primary">Proficient</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Concurrency</span>
-                    <span className="text-primary">Intermediate</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="card">
-                <h3 className="font-semibold mb-4 text-accent">Backend Development</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Java</span>
-                    <span className="text-accent">Advanced</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Spring Boot</span>
-                    <span className="text-accent">Proficient</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">SQL/Oracle</span>
-                    <span className="text-accent">Proficient</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">REST APIs</span>
-                    <span className="text-accent">Advanced</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="card">
-                <h3 className="font-semibold mb-4 text-warning">Emerging Skills</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Python</span>
-                    <span className="text-warning">Learning</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">AI/LLM APIs</span>
-                    <span className="text-warning">Learning</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Agent Frameworks</span>
-                    <span className="text-warning">Learning</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Japanese</span>
-                    <span className="text-warning">Learning</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Personal Details */}
-          <section className="mb-16">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="card">
-                <h2 className="text-xl font-bold mb-6 flex items-center gap-3">
-                  <Globe className="w-6 h-6 text-primary" />
-                  Location & Languages
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-medium">Vantaa, Finland</p>
-                      <p className="text-text-secondary text-sm">Currently studying at Hive Helsinki</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* 프로필 사진 & 기본 정보 */}
+            <div className="lg:col-span-1">
+              <div className="profile-card sticky top-8">
+                {/* 프로필 이미지 */}
+                <div className="text-center mb-6">
+                  <div className="profile-avatar mx-auto mb-4">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-4xl font-pixel border-4 border-gray-300">
+                      사진
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-5 h-5 text-accent" />
-                    <div>
-                      <p className="font-medium">Languages</p>
-                      <p className="text-text-secondary text-sm">
-                        Korean (Native), English (Professional), Japanese (Learning)
-                      </p>
+                  <h2 className="font-pixel text-2xl font-bold text-gray-800 mb-2">
+                    Juhyeon Lee
+                  </h2>
+                  <p className="text-blue-600 font-pixel text-lg mb-1">
+                    이주현
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    049 - 289 - 0629
+                  </p>
+                </div>
+
+                {/* 연락처 정보 */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Mail className="w-4 h-4 text-blue-500" />
+                    <span className="text-sm">juhyeonl@student.hive.fi</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <MapPin className="w-4 h-4 text-blue-500" />
+                    <span className="text-sm">Helsinki, Finland</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Calendar className="w-4 h-4 text-blue-500" />
+                    <span className="text-sm">Born 2000</span>
+                  </div>
+                </div>
+
+                {/* 소셜 링크 */}
+                <div className="flex gap-3 justify-center">
+                  <a 
+                    href="https://github.com/juhyeonl-hub" 
+                    target="_blank"
+                    className="social-link bg-gray-800 text-white"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a 
+                    href="https://linkedin.com/in/juhyeon-lee" 
+                    target="_blank"
+                    className="social-link bg-blue-600 text-white"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a 
+                    href="https://portfolio-utcx.vercel.app" 
+                    target="_blank"
+                    className="social-link bg-green-600 text-white"
+                  >
+                    <Globe className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 메인 콘텐츠 */}
+            <div className="lg:col-span-2 space-y-8">
+              
+              {/* 학력 섹션 */}
+              <div className="profile-section">
+                <div className="section-header">
+                  <GraduationCap className="w-6 h-6 text-blue-500" />
+                  <h3 className="font-pixel text-xl font-bold text-gray-800">학력</h3>
+                </div>
+                <div className="section-content">
+                  <div className="education-item">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-gray-800">Hive Helsinki</h4>
+                      <span className="text-sm text-gray-500">2024 - Present</span>
+                    </div>
+                    <p className="text-blue-600 text-sm font-pixel mb-2">
+                      Software Engineering
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      42 Network 기반의 혁신적인 교육 과정. 동료 학습(Peer Learning)과 
+                      프로젝트 기반 학습을 통해 Systems Programming, Algorithm, 
+                      C/C++ 등을 심도있게 학습.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 경력 섹션 */}
+              <div className="profile-section">
+                <div className="section-header">
+                  <Briefcase className="w-6 h-6 text-blue-500" />
+                  <h3 className="font-pixel text-xl font-bold text-gray-800">경력</h3>
+                </div>
+                <div className="section-content">
+                  <div className="experience-item">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-gray-800">Agentic Engineering Journey</h4>
+                      <span className="text-sm text-gray-500">2026 - Present</span>
+                    </div>
+                    <p className="text-blue-600 text-sm font-pixel mb-2">
+                      AI Agent Developer (Transitioning)
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                      Systems Programming 기반을 바탕으로 AI Agent 개발 분야로 전환. 
+                      LLM 통합, 자동화 워크플로우, 인텔리전트 시스템 구축에 집중.
+                    </p>
+                    <ul className="text-xs text-gray-500 space-y-1">
+                      <li>• Claude API 활용한 개인 포트폴리오 자동 생성</li>
+                      <li>• 마인크래프트 스타일 UI/UX 디자인 및 구현</li>
+                      <li>• Next.js + TypeScript 기반 풀스택 개발</li>
+                    </ul>
+                  </div>
+
+                  <div className="experience-item mt-6">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-gray-800">Systems Programming Projects</h4>
+                      <span className="text-sm text-gray-500">2024</span>
+                    </div>
+                    <p className="text-blue-600 text-sm font-pixel mb-2">
+                      Systems Programmer
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                      Hive Helsinki에서 다양한 시스템 프로그래밍 프로젝트 수행. 
+                      UNIX 시스템 이해도와 C/C++ 전문성을 바탕으로 고품질 소프트웨어 개발.
+                    </p>
+                    <ul className="text-xs text-gray-500 space-y-1">
+                      <li>• POSIX 호환 Shell 구현 (Minishell)</li>
+                      <li>• 멀티스레딩 및 동시성 제어 (Philosophers)</li>
+                      <li>• 3D 레이캐스팅 게임 엔진 개발 (Cub3D)</li>
+                      <li>• 최적화 알고리즘 설계 (Push Swap)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* 포트폴리오 섹션 */}
+              <div className="profile-section">
+                <div className="section-header">
+                  <Award className="w-6 h-6 text-blue-500" />
+                  <h3 className="font-pixel text-xl font-bold text-gray-800">포트폴리오</h3>
+                </div>
+                <div className="section-content">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="portfolio-item">
+                      <div className="p-4 bg-gray-50 rounded-lg border-2 border-gray-200 hover:border-blue-300 transition-colors">
+                        <div className="flex items-center gap-3 mb-3">
+                          <Code2 className="w-5 h-5 text-blue-500" />
+                          <h4 className="font-pixel font-semibold text-gray-800">Systems Projects</h4>
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          C/C++로 구현한 고품질 시스템 프로그램들. 
+                          UNIX 환경에서의 깊은 이해와 최적화된 코드 작성 능력을 보여줍니다.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="portfolio-item">
+                      <div className="p-4 bg-gray-50 rounded-lg border-2 border-gray-200 hover:border-blue-300 transition-colors">
+                        <div className="flex items-center gap-3 mb-3">
+                          <Globe className="w-5 h-5 text-blue-500" />
+                          <h4 className="font-pixel font-semibold text-gray-800">Web Development</h4>
+                        </div>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          Next.js, TypeScript, Tailwind CSS를 활용한 
+                          현대적인 웹 애플리케이션 개발과 배포 경험.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="card">
-                <h2 className="text-xl font-bold mb-6 flex items-center gap-3">
-                  <Coffee className="w-6 h-6 text-secondary" />
-                  When I'm Not Coding
-                </h2>
-                <div className="space-y-3 text-text-secondary">
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-secondary rounded-full"></span>
-                    Exploring Helsinki's tech meetups and communities
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-secondary rounded-full"></span>
-                    Reading about AI/ML developments and system design
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-secondary rounded-full"></span>
-                    Studying Japanese for future opportunities
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-secondary rounded-full"></span>
-                    Gaming and staying connected with friends back in Korea
-                  </p>
-                </div>
-              </div>
             </div>
-          </section>
+          </div>
 
-          {/* Contact CTA */}
-          <section className="text-center">
-            <div className="card bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
-              <h2 className="text-2xl font-bold mb-4">Let's Connect</h2>
-              <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-                Whether you want to discuss AI agents, systems programming, career opportunities, 
-                or just chat about technology, I'm always open to interesting conversations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="mailto:xx.juon@gmail.com" 
-                  className="btn"
-                >
-                  Send me an Email
-                </a>
-                <a
-                  href="https://linkedin.com/in/juhyeon-lee-54aa1a223"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                >
-                  Connect on LinkedIn
-                </a>
-              </div>
-            </div>
-          </section>
+          {/* Back to Home */}
+          <div className="text-center mt-16">
+            <Link href="/">
+              <button className="minecraft-menu-button px-8 py-4 font-pixel text-gray-800 hover:scale-105 transition-transform">
+                ← Back to Adventure
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };
 
-export default About;
+export default AboutPage;
