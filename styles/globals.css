@@ -437,3 +437,39 @@
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
+
+/* Minecraft-style card for projects */
+.minecraft-project-card {
+  @apply rounded-lg shadow-lg transform transition-all duration-200 hover:shadow-xl;
+  box-shadow: 
+    4px 4px 0px #374151,
+    0 0 0 4px #374151;
+}
+
+.minecraft-project-card:hover {
+  transform: scale(1.02) translate(-2px, -2px);
+  box-shadow: 
+    6px 6px 0px #374151,
+    0 0 0 4px #6b7280;
+}
+
+/* Profile card styling */
+.minecraft-profile-card {
+  @apply rounded-lg shadow-lg transform transition-all duration-200;
+  box-shadow: 
+    4px 4px 0px #374151,
+    0 0 0 4px #374151;
+}
+
+/* Journal card styling */
+.minecraft-journal-card {
+  @apply rounded-lg shadow-lg transform transition-all duration-200;
+  box-shadow: 
+    4px 4px 0px #374151,
+    0 0 0 4px #374151;
+}
+
+/* Scale-102 utility since Tailwind doesn't have it by default */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
